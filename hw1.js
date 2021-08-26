@@ -1,3 +1,7 @@
+// Soonkwon Hwang G01281350
+// SWE 432
+// HW Assignment 1: Javascript
+
 const dataset = [
   {
     _id: "juG0aJTnYxmf",
@@ -4865,16 +4869,39 @@ const shortestQuote = () => {
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
-const useNever = () => {
-  const counts = {};
-  const sampleArray = ["a", "a", "b", "c"];
-  sampleArray.forEach(function (x) {
-    counts[x] = (counts[x] || 0) + 1;
+const longestQuote = () => {
+  var result = quotes.reduce(function (prev, curr) {
+    return prev.length > curr.length ? prev : curr;
   });
-  console.log(counts);
+
+  return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
-console.log(useNever());
+// const useNever = () => {
+//   const counts = {};
+//   const sampleArray = ["a", "a", "b", "c"];
+//   sampleArray.forEach(function (x) {
+//     counts[x] = (counts[x] || 0) + 1;
+//   });
+//   console.log(counts);
+// };
 
-console.log("Q1) What is the shortest quote among the given quotes?");
+// console.log(useNever());
+
+console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
+
+console.log("Q2) What is the longest quote among the quotes?");
+console.log("A) " + longestQuote());
+
+console.log("Q3) How many quotes are written by the first name as George?");
+
+console.log("Q4) How many quotes contains the word \"never\"?");
+
+console.log("Q5) Who worte the most quotes?");
+
+console.log("Q6) How many quotes are related to friendship?");
+
+console.log("Q7) How many people wrote these quotes? (no duplicates)");
+
+console.log("Q8) What is the avarage length of the quotes?");
