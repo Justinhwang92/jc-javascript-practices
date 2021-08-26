@@ -1,6 +1,7 @@
 // Soonkwon Hwang G01281350
 // SWE 432
 // HW Assignment 1: Javascript
+// API from Public API (https://github.com/lukePeavey/quotable)
 
 const dataset = [
   {
@@ -4877,6 +4878,7 @@ const longestQuote = () => {
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
+
 // const useNever = () => {
 //   const counts = {};
 //   const sampleArray = ["a", "a", "b", "c"];
@@ -4902,6 +4904,6 @@ console.log("Q5) Who worte the most quotes?");
 
 console.log("Q6) How many quotes are related to friendship?");
 
-console.log("Q7) How many people wrote these quotes? (no duplicates)");
+console.log("Q7) What is the most commonly used word?");
 
 console.log("Q8) What is the avarage length of the quotes?");
