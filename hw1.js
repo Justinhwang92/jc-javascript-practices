@@ -4878,6 +4878,22 @@ const longestQuote = () => {
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
+const searchFirstName = (firstName) => {
+  let counts = 0;
+
+  for (var i in quotes) {
+    var nameArray = new Array();
+    if(quotes[i].author){
+      nameArray = quotes[i].author.split(' ');
+      if(nameArray[0] === firstName){
+        counts++;
+      }
+    }
+  }
+  
+  return counts;
+}
+
 
 // const useNever = () => {
 //   const counts = {};
@@ -4897,6 +4913,7 @@ console.log("Q2) What is the longest quote among the quotes?");
 console.log("A) " + longestQuote());
 
 console.log("Q3) How many quotes are written by the first name as George?");
+console.log("A) " + searchFirstName("George"));
 
 console.log("Q4) How many quotes contains the word \"never\"?");
 
@@ -4907,3 +4924,4 @@ console.log("Q6) How many quotes are related to friendship?");
 console.log("Q7) What is the most commonly used word?");
 
 console.log("Q8) What is the avarage length of the quotes?");
+
