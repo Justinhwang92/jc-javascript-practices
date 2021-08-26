@@ -4894,6 +4894,18 @@ const searchFirstName = (firstName) => {
   return counts;
 }
 
+const searchTerm = (term) => {
+  let counts = 0;
+  term = term.toLowerCase();
+
+  for (var i in quotes) {
+    if(quotes[i].content.toLowerCase().includes(term)){
+      counts++;
+    }
+  }
+  
+  return counts; 
+}
 
 // const useNever = () => {
 //   const counts = {};
@@ -4916,6 +4928,7 @@ console.log("Q3) How many quotes are written by the first name as George?");
 console.log("A) " + searchFirstName("George"));
 
 console.log("Q4) How many quotes contains the word \"never\"?");
+console.log("A) " + searchTerm("never"));
 
 console.log("Q5) Who worte the most quotes?");
 
