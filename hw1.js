@@ -4861,6 +4861,7 @@ for (var i in dataset) {
   );
 }
 
+// Find the shortest quote
 const shortestQuote = () => {
   var result = quotes.reduce(function (prev, curr) {
     return prev.length < curr.length ? prev : curr;
@@ -4869,6 +4870,7 @@ const shortestQuote = () => {
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
+// Find the longest quote
 const longestQuote = () => {
   var result = quotes.reduce(function (prev, curr) {
     return prev.length > curr.length ? prev : curr;
@@ -4877,51 +4879,61 @@ const longestQuote = () => {
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
+// Find the count of quotes by specific first name
 const searchFirstName = (firstName) => {
   let counts = 0;
-
+  // iterate through the qutes
   for (var i in quotes) {
     var nameArray = new Array();
-    if(quotes[i].author){
-      nameArray = quotes[i].author.split(' ');
-      if(nameArray[0] === firstName){
+    if (quotes[i].author) {
+      // split first, middle, and last name
+      nameArray = quotes[i].author.split(" ");
+      // find the match and count
+      if (nameArray[0] === firstName) {
         counts++;
       }
     }
   }
-  
-  return counts;
-}
 
+  return counts;
+};
+
+// Find how many quotes include the specific term
 const searchTerm = (term) => {
   let counts = 0;
+  // make search term lowercase
   term = term.toLowerCase();
-
+  // Iterate the quotes' content
   for (var i in quotes) {
-    if(quotes[i].content.toLowerCase().includes(term)){
+    if (quotes[i].content.toLowerCase().includes(term)) {
       counts++;
     }
   }
-  
-  return counts; 
-}
 
+  return counts;
+};
+
+// Find the person who wrote the most quotes
 const mostAuthor = () => {
   const authors = quotes.map((anAuthor) => anAuthor.author);
-  
-  // Count
+
+  // count
   var countObj = {};
-  authors.forEach((i) => {countObj[i] = (countObj[i]||0) + 1;});
+  authors.forEach((i) => {
+    countObj[i] = (countObj[i] || 0) + 1;
+  });
 
   // get highest value
   let arr = Object.values(countObj);
   let max = Math.max(...arr);
 
   // get the key with highest value
-  const authorName = Object.keys(countObj).reduce((a, b) => countObj[a] > countObj[b] ? a : b);
+  const authorName = Object.keys(countObj).reduce((a, b) =>
+    countObj[a] > countObj[b] ? a : b
+  );
 
   return `${authorName} wrote ${max} quotes!`;
-}
+};
 
 console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
@@ -4932,7 +4944,7 @@ console.log("A) " + longestQuote());
 console.log("Q3) How many quotes are written by the first name as George?");
 console.log("A) " + searchFirstName("George"));
 
-console.log("Q4) How many quotes contains the word \"never\"?");
+console.log('Q4) How many quotes contains the word "never"?');
 console.log("A) " + searchTerm("never"));
 
 console.log("Q5) Who worte the most quotes?");
@@ -4943,4 +4955,3 @@ console.log("Q6) How many quotes are related to friendship?");
 console.log("Q7) What is the most commonly used word?");
 
 console.log("Q8) What is the avarage length of the quotes?");
-
