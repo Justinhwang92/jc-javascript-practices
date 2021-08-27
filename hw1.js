@@ -4899,7 +4899,7 @@ const searchFirstName = (firstName) => {
 };
 
 // Find how many quotes include the specific term
-const searchTerm = (term) => {
+const searchTerm = (term = "never") => {
   let counts = 0;
   // make search term lowercase
   term = term.toLowerCase();
@@ -4935,6 +4935,33 @@ const mostAuthor = () => {
   return `${authorName} wrote ${max} quotes!`;
 };
 
+const mostCommonWord = () => {
+  const contents = quotes.map((aContent) => aContent.content);
+  const words = contents.map((content) => content.split(" "));
+  const wordsArray = new Array();
+
+  // make into array of each word in the words object
+  for (const word of words) {
+    for (const each of word) {
+      wordsArray.push(each);
+    }
+  }
+
+  const counts = {};
+  let maxCount = 0;
+  let maxElement;
+  // count
+  for (let i = 0; i < wordsArray.length; i++) {
+    const key = wordsArray[i];
+    const count = (counts[key] = (counts[key] || 0) + 1);
+    if (count > maxCount) {
+      maxCount = count;
+      maxElement = key;
+    }
+  }
+  return `"${maxElement}" is used ${maxCount} times and it is the most common word in the quotes`;
+};
+
 console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
 
@@ -4952,6 +4979,7 @@ console.log("A) " + mostAuthor());
 
 console.log("Q6) How many quotes are related to friendship?");
 
-console.log("Q7) What is the most commonly used word?");
+console.log("Q7) What is the most commonly used word in quotes?");
+console.log("A) " + mostCommonWord());
 
 console.log("Q8) What is the avarage length of the quotes?");
