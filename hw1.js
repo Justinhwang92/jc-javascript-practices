@@ -4862,7 +4862,6 @@ for (var i in dataset) {
 }
 
 const shortestQuote = () => {
-  // console.log(quotes.map((quote) => quote.length));
   var result = quotes.reduce(function (prev, curr) {
     return prev.length < curr.length ? prev : curr;
   });
@@ -4907,16 +4906,22 @@ const searchTerm = (term) => {
   return counts; 
 }
 
-// const useNever = () => {
-//   const counts = {};
-//   const sampleArray = ["a", "a", "b", "c"];
-//   sampleArray.forEach(function (x) {
-//     counts[x] = (counts[x] || 0) + 1;
-//   });
-//   console.log(counts);
-// };
+const mostAuthor = () => {
+  const authors = quotes.map((anAuthor) => anAuthor.author);
+  
+  // Count
+  var countObj = {};
+  authors.forEach((i) => {countObj[i] = (countObj[i]||0) + 1;});
 
-// console.log(useNever());
+  // get highest value
+  let arr = Object.values(countObj);
+  let max = Math.max(...arr);
+
+  // get the key with highest value
+  const authorName = Object.keys(countObj).reduce((a, b) => countObj[a] > countObj[b] ? a : b);
+
+  return `${authorName} wrote ${max} quotes!`;
+}
 
 console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
@@ -4931,6 +4936,7 @@ console.log("Q4) How many quotes contains the word \"never\"?");
 console.log("A) " + searchTerm("never"));
 
 console.log("Q5) Who worte the most quotes?");
+console.log("A) " + mostAuthor());
 
 console.log("Q6) How many quotes are related to friendship?");
 
