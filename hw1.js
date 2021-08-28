@@ -1,7 +1,7 @@
 // Soonkwon Hwang G01281350
 // SWE 432
 // HW Assignment 1: Javascript
-// API from Public API (https://github.com/lukePeavey/quotable)
+// API (500 quotes) from Public API (https://github.com/lukePeavey/quotable)
 
 const dataset = [
   {
@@ -9,7 +9,7 @@ const dataset = [
     content:
       "The Superior Man is aware of Righteousness, the inferior man is aware of advantage.",
     author: "Confucius",
-    tags: ["famous-quotes"],
+    tags: ["famous-quotes"], 
     authorId: "ropvZKOXYhLr",
     authorSlug: "confucius",
     length: 83,
@@ -4872,7 +4872,8 @@ const shortestQuote = () => {
 
 // Find the longest quote
 const longestQuote = () => {
-  var result = quotes.reduce(function (prev, curr) {
+  // Arrow function
+  var result = quotes.reduce((prev, curr) => {
     return prev.length > curr.length ? prev : curr;
   });
 
@@ -4915,7 +4916,7 @@ const searchTerm = (term = "never") => {
 
 // Find the person who wrote the most quotes
 const mostAuthor = () => {
-  const authors = quotes.map((anAuthor) => anAuthor.author);
+  const authors = quotes.map((quote) => quote.author);
 
   // count
   var countObj = {};
@@ -4935,6 +4936,25 @@ const mostAuthor = () => {
   return `${authorName} wrote ${max} quotes!`;
 };
 
+// Count the frequency of a tag
+const frequencyTag = (tagName = '') => {
+  const tags = quotes.map((quote) => quote.tags);
+  let count = 0;
+
+  for (const tag of tags) {
+    if(tag.length > 1){
+      // there are more than one tag
+      for (var i in tag){
+        if(tag[i] === tagName) count++;
+      }
+    } else {
+      if(tag[0] === tagName) count++;
+    }    
+  }
+  return count;
+}
+
+// Find the highest usage word
 const mostCommonWord = () => {
   const contents = quotes.map((aContent) => aContent.content);
   const words = contents.map((content) => content.split(" "));
@@ -4943,16 +4963,26 @@ const mostCommonWord = () => {
   // make into array of each word in the words object
   for (const word of words) {
     for (const each of word) {
-      wordsArray.push(each);
+      // make lowercase and remove dot and comma
+      wordsArray.push(each.toLowerCase().replace(/[.,\s]/g, ''));
     }
   }
+  // filter
+  const filterWords = ["the", "is", "to", "of", "you", "and", "a", "in", 
+  "not", "that", "your", "be", "are", "we", "for", "i", "what", "have", 
+  "do", "but", "who", "it", "can", "will", "our", "as", "with", "by", 
+  "he", "only", "if", "no"];
+
+  const filteredArray = wordsArray.filter(
+    word => !filterWords.includes(word)
+  );
 
   const counts = {};
   let maxCount = 0;
   let maxElement;
   // count
-  for (let i = 0; i < wordsArray.length; i++) {
-    const key = wordsArray[i];
+  for (let i = 0; i < filteredArray.length; i++) {
+    const key = filteredArray[i];
     const count = (counts[key] = (counts[key] || 0) + 1);
     if (count > maxCount) {
       maxCount = count;
@@ -4972,12 +5002,13 @@ console.log("Q3) How many quotes are written by the first name as George?");
 console.log("A) " + searchFirstName("George"));
 
 console.log('Q4) How many quotes contains the word "never"?');
-console.log("A) " + searchTerm("never"));
+console.log("A) " + searchTerm()); // never is set to default value of this function
 
 console.log("Q5) Who worte the most quotes?");
 console.log("A) " + mostAuthor());
 
 console.log("Q6) How many quotes are related to friendship?");
+console.log("A) " + frequencyTag("friendship"));
 
 console.log("Q7) What is the most commonly used word in quotes?");
 console.log("A) " + mostCommonWord());
