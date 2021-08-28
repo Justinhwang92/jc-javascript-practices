@@ -5002,6 +5002,20 @@ const mostCommonWord = () => {
   return `"${maxElement}" is used ${maxCount} times and it is the most common word in the quotes`;
 };
 
+// Calculate the average of length of the quotes
+const averageLength = () => {
+  // instance of a Map
+  let mp = new Map();
+  mp.set("lengths", quotes.map((aLength) => aLength.length));
+
+  return average(mp.get("lengths"));
+}
+// helper function to calculate the average
+const average = (array) => {
+  return array.reduce((a, b) => a + b) / array.length; 
+}
+
+
 console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
 
@@ -5023,4 +5037,5 @@ console.log("A) " + frequencyTag("friendship"));
 console.log("Q7) What is the most commonly used word in quotes?");
 console.log("A) " + mostCommonWord());
 
-console.log("Q8) What is the avarage length of the quotes?");
+console.log("Q8) What is the average length of the quotes?");
+console.log("A) " + averageLength());
