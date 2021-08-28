@@ -4840,9 +4840,11 @@ const dataset = [
     length: 46,
   },
 ];
-
+// Class declaration
 class quote {
+  // constructor
   constructor(content, author, tags, length) {
+    // instance variables with this
     this.content = content;
     this.author = author;
     this.tags = tags;
@@ -4866,7 +4868,7 @@ const shortestQuote = () => {
   var result = quotes.reduce(function (prev, curr) {
     return prev.length < curr.length ? prev : curr;
   });
-
+  // template literal
   return `"${result.content}" by ${result.author} with ${result.length} length`;
 };
 
@@ -4882,8 +4884,11 @@ const longestQuote = () => {
 
 // Find the count of quotes by specific first name
 const searchFirstName = (firstName) => {
+  // let statement
   let counts = 0;
+
   // iterate through the qutes
+  // for in statement
   for (var i in quotes) {
     var nameArray = new Array();
     if (quotes[i].author) {
@@ -4900,6 +4905,7 @@ const searchFirstName = (firstName) => {
 };
 
 // Find how many quotes include the specific term
+// default value
 const searchTerm = (term = "never") => {
   let counts = 0;
   // make search term lowercase
@@ -4916,6 +4922,7 @@ const searchTerm = (term = "never") => {
 
 // Find the person who wrote the most quotes
 const mostAuthor = () => {
+  // Array.map()
   const authors = quotes.map((quote) => quote.author);
 
   // count
@@ -4937,10 +4944,13 @@ const mostAuthor = () => {
 };
 
 // Count the frequency of a tag
+// deafult value
 const frequencyTag = (tagName = '') => {
+  // const statement
   const tags = quotes.map((quote) => quote.tags);
   let count = 0;
-
+  
+  // for of statement
   for (const tag of tags) {
     if(tag.length > 1){
       // there are more than one tag
