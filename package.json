@@ -1,0 +1,22 @@
+{
+  "name": "jc-javascript-practices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aug31.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Justinhwang92/jc-javascript-practices.git"
+  },
+  "author": "Soonkwon Hwang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Justinhwang92/jc-javascript-practices/issues"
+  },
+  "homepage": "https://github.com/Justinhwang92/jc-javascript-practices#readme",
+  "devDependencies": {
+    "jest": "^27.1.0"
+  }
+}
