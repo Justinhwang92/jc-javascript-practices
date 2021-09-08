@@ -1,15 +1,11 @@
-// Soonkwon Hwang G01281350
-// SWE 432
-// HW Assignment 1: Javascript
 // API (500 quotes) from Public API (https://github.com/lukePeavey/quotable)
-
 const dataset = [
   {
     _id: "juG0aJTnYxmf",
     content:
       "The Superior Man is aware of Righteousness, the inferior man is aware of advantage.",
     author: "Confucius",
-    tags: ["famous-quotes"], 
+    tags: ["famous-quotes"],
     authorId: "ropvZKOXYhLr",
     authorSlug: "confucius",
     length: 83,
@@ -4945,24 +4941,24 @@ const mostAuthor = () => {
 
 // Count the frequency of a tag
 // deafult value
-const frequencyTag = (tagName = '') => {
+const frequencyTag = (tagName = "") => {
   // const statement
   const tags = quotes.map((quote) => quote.tags);
   let count = 0;
-  
+
   // for of statement
   for (const tag of tags) {
-    if(tag.length > 1){
+    if (tag.length > 1) {
       // there are more than one tag
-      for (var i in tag){
-        if(tag[i] === tagName) count++;
+      for (var i in tag) {
+        if (tag[i] === tagName) count++;
       }
     } else {
-      if(tag[0] === tagName) count++;
-    }    
+      if (tag[0] === tagName) count++;
+    }
   }
   return count;
-}
+};
 
 // Find the highest usage word
 const mostCommonWord = () => {
@@ -4974,17 +4970,47 @@ const mostCommonWord = () => {
   for (const word of words) {
     for (const each of word) {
       // make lowercase and remove dot and comma
-      wordsArray.push(each.toLowerCase().replace(/[.,\s]/g, ''));
+      wordsArray.push(each.toLowerCase().replace(/[.,\s]/g, ""));
     }
   }
   // filter
-  const filterWords = ["the", "is", "to", "of", "you", "and", "a", "in", 
-  "not", "that", "your", "be", "are", "we", "for", "i", "what", "have", 
-  "do", "but", "who", "it", "can", "will", "our", "as", "with", "by", 
-  "he", "only", "if", "no"];
+  const filterWords = [
+    "the",
+    "is",
+    "to",
+    "of",
+    "you",
+    "and",
+    "a",
+    "in",
+    "not",
+    "that",
+    "your",
+    "be",
+    "are",
+    "we",
+    "for",
+    "i",
+    "what",
+    "have",
+    "do",
+    "but",
+    "who",
+    "it",
+    "can",
+    "will",
+    "our",
+    "as",
+    "with",
+    "by",
+    "he",
+    "only",
+    "if",
+    "no",
+  ];
 
   const filteredArray = wordsArray.filter(
-    word => !filterWords.includes(word)
+    (word) => !filterWords.includes(word)
   );
 
   const counts = {};
@@ -5006,15 +5032,17 @@ const mostCommonWord = () => {
 const averageLength = () => {
   // instance of a Map
   let mp = new Map();
-  mp.set("lengths", quotes.map((aLength) => aLength.length));
+  mp.set(
+    "lengths",
+    quotes.map((aLength) => aLength.length)
+  );
 
   return average(mp.get("lengths"));
-}
+};
 // helper function to calculate the average
 const average = (array) => {
-  return array.reduce((a, b) => a + b) / array.length; 
-}
-
+  return array.reduce((a, b) => a + b) / array.length;
+};
 
 console.log("Q1) What is the shortest quote among the quotes?");
 console.log("A) " + shortestQuote());
